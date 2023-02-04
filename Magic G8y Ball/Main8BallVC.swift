@@ -1,5 +1,3 @@
-//
-//  ViewController.swift
 //  Magic G8y Ball
 //
 //  Created by Mark Weathers on 2/2/23.
