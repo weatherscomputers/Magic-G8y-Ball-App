@@ -18,6 +18,7 @@ class ViewController: UIViewController {
     @IBOutlet var eightBallLabel: UILabel!
     
     var images: [UIImage] = EightBallImages.images
+
     
     
     var seconds = 4
@@ -42,6 +43,7 @@ class ViewController: UIViewController {
         if motion == .motionShake {
             
             sleep(1)
+            self.eightBallImage.shake(shakeCount: 6)
            
             self.eightBallImage.image = images.randomElement() ?? UIImage(named: "Back8Ball")
             self.eightBallLabel.text = "You are Gay shake again if you would like"
@@ -49,8 +51,21 @@ class ViewController: UIViewController {
         
     }
     
+    
 }
 
+extension UIView{
+    
+    func shake(duration: TimeInterval = 0.05, shakeCount: Float = 6, xValue: CGFloat = 12, yValue: CGFloat = 0){
+            let animation = CABasicAnimation(keyPath: "position")
+            animation.duration = duration
+            animation.repeatCount = shakeCount
+            animation.autoreverses = true
+            animation.fromValue = NSValue(cgPoint: CGPoint(x: self.center.x - xValue, y: self.center.y - yValue))
+            animation.toValue = NSValue(cgPoint: CGPoint(x: self.center.x + xValue, y: self.center.y - yValue))
+            self.layer.add(animation, forKey: "shake")
+        }
+}
 // Notes:
 //a Responder is first in line to respond to any given event
 // in iOS you have a bunch of objects that can respond to any given event and they are setup in a Responder chain
