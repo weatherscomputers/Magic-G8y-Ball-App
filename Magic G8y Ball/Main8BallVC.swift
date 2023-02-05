@@ -1,5 +1,6 @@
 //  Magic G8y Ball
 //
+//
 //  Created by Mark Weathers on 2/2/23.
 //
 //Customer hits rules, pop up happens that say rules and what to say, shakes the phone, answers appear that they are randomly selected but actually always yes gay answers appear
