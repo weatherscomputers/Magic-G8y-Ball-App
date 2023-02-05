@@ -19,7 +19,7 @@ class ViewController: UIViewController {
 
     
     
-    var seconds = 4
+    var seconds = 2
     var timer = Timer()
     
     
@@ -40,14 +40,30 @@ class ViewController: UIViewController {
         
         if motion == .motionShake {
             
-            sleep(1)
-            self.eightBallImage.shake(shakeCount: 6)
+            
+            // Scheduled timer 1 second that repeats itself that when seconds variable goes down by 1 second when hits 0 displays answer
+            Timer.scheduledTimer(withTimeInterval: 1, repeats: true) { timer in
+                self.seconds -= 1
+                self.eightBallImage.image = UIImage(named: "Back8Ball")
+                self.eightBallLabel.text = " "
+                self.eightBallImage.shake(shakeCount: 3)
+                if self.seconds == 0 {
+                    self.eightBallImage.image = self.images.randomElement() ?? UIImage(named: "Back8Ball")
+                    self.eightBallLabel.text = "You are Gay shake again if you would like"
+                    timer.invalidate()
+                } else {
+                    print(self.seconds)
+                }
+            }
+            
+            
+            
            
-            self.eightBallImage.image = images.randomElement() ?? UIImage(named: "Back8Ball")
-            self.eightBallLabel.text = "You are Gay shake again if you would like"
+           
         }
         
     }
+    
     
     
 }
