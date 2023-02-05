@@ -43,6 +43,9 @@ class ViewController: UIViewController {
             
             
             // Scheduled timer 1 second that repeats itself that when seconds variable goes down by 1 second when hits 0 displays answer
+            //**BUG fixed** after you shake once shaking again is caught in endless loop of shaking with nothing displayed -- fixed by resetting seconds to 2 in the if statement
+            
+            
             Timer.scheduledTimer(withTimeInterval: 1, repeats: true) { timer in
                 self.seconds -= 1
                 self.eightBallImage.image = UIImage(named: "Back8Ball")
@@ -52,8 +55,7 @@ class ViewController: UIViewController {
                     self.eightBallImage.image = self.images.randomElement() ?? UIImage(named: "Back8Ball")
                     self.eightBallLabel.text = "You are Gay shake again if you would like"
                     timer.invalidate()
-                } else {
-                    print(self.seconds)
+                    self.seconds = 2
                 }
             }
             
